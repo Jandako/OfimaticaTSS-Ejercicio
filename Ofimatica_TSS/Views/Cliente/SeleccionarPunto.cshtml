@@ -1,0 +1,32 @@
+﻿
+@model IQueryable<Ofimatica_TSS.Models.PuntoTuristicoViewModel>
+@{
+    ViewData["Title"] = "Seleccionar punto turistico";
+}
+
+<div class="text-center">
+    <div class="row">
+        <div class="offset-1 col-md-10 offset-1">
+
+            <div lass="col-md-12">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <img src="~/images/@item.Imagen" style="max-width:300px; max-height:200px;" />
+                                <h3>@item.IdPuntoTuristico</h3>
+                                <h3>@item.NombrePunto</h3>
+                                <form asp-controller="Cliente" asp-action="SeleccionarPunto" id="form_@item.IdPuntoTuristico" method="post">
+                                    <input type="hidden" id="id" name="id" value="@item.IdPuntoTuristico" />
+                                </form>
+                                <a href="#" onclick="document.getElementById('form_@item.IdPuntoTuristico').submit()">Seleccionar</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
